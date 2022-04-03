@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Buslist"
+        android:title="Buslist"
+        android:icon="@drawable/ic_baseline_list_alt_24"/>
+    <item
+        android:id="@+id/Addbus"
+        android:title="Add Bus"
+        android:icon="@drawable/ic_baseline_directions_bus_24"/>
+    <item
+        android:id="@+id/Adminprofile"
+        android:title="Profile"
+        android:icon="@drawable/ic_baseline_person_24"/>
+
+    <item
+        android:id="@+id/Admin_settings"
+        android:title="Settings"
+        android:icon="@drawable/ic_baseline_settings_24"/>
+
+</menu>

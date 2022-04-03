@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Tae/app/src/main/res/drawable/buttonsstyle.xml" value="0.2505" />
+        <entry key="..\:/Tae/app/src/main/res/drawable/textviewbgc.xml" value="0.2505" />
+        <entry key="..\:/Tae/app/src/main/res/layout/activity_adminhome.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/activity_adminlogin.xml" value="0.1" />
+        <entry key="..\:/Tae/app/src/main/res/layout/activity_dashboard.xml" value="0.1" />
+        <entry key="..\:/Tae/app/src/main/res/layout/activity_login.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Tae/app/src/main/res/layout/activity_main2.xml" value="0.1" />
+        <entry key="..\:/Tae/app/src/main/res/layout/activity_mamainactivity.xml" value="0.20972222222222223" />
+        <entry key="..\:/Tae/app/src/main/res/layout/activity_registration.xml" value="0.2" />
+        <entry key="..\:/Tae/app/src/main/res/layout/activity_user_profile.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/fragment_admin__bus__registration.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/fragment_admin__bus_list.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/fragment_admin_profile.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/fragment_admin_settings.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/fragment_first.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/fragment_firstfragmentadmin.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/fragment_second.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/fragment_testing.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/fragment_third.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/recycleitems.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/user_list.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/menu/admin_menu.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2505" />
+        <entry key="..\:/Tae/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2505" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

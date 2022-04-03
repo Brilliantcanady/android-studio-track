@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/appbg"
+    android:padding="10dp"
+    tools:context=".Admin_Home">
+    <ImageView
+        android:id="@+id/logoimage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/bus100"
+        android:contentDescription="@string/todo" />
+
+    <TextView
+        android:text="Hi,Welcome to Bus Registration page"
+        android:id="@+id/logo_name"
+        style="@style/headings" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/antic"
+
+        android:text="fill the details"
+        android:textSize="18sp" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/drivername"
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Driver Name"
+                android:inputType="textPersonName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+</com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/from_city"
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="From Address"
+                android:inputType="textPersonName">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/to_city"
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="To address"
+                android:inputType="textPersonName">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/mob_no"
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Driver phone no">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"></com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/bus_no"
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Bus No"
+                android:inputType="textPersonName">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <android.widget.Button
+                android:id="@+id/Bus_data_Btn"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="10dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttonsstyle"
+                android:text="Submit" />
+
+        </LinearLayout>
+    </ScrollView>
+        </LinearLayout>
