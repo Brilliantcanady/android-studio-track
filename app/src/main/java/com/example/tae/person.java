@@ -1,19 +1,18 @@
 package com.example.tae;
+public class person
+{
 
-public class person {
-    String drivername;
-    String mobile;
-    String busno;
-    String from;
-    String to;
+    private String firstname;
+    private String drivername;
+    private String mob;
+    private String busno;
+    private String from;
+    private String to;
 
-    public person(String drivername, String mobile, String busno, String from, String to) {
-        this.drivername = drivername;
-        this.mobile = mobile;
-        this.busno = busno;
-        this.from = from;
-        this.to = to;
-    }
+
+    public person() {}
+
+    // Getter and setter method
 
     public String getDrivername() {
         return drivername;
@@ -24,11 +23,11 @@ public class person {
     }
 
     public String getMob() {
-        return mobile;
+        return mob;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setMob(String mob) {
+        this.mob = mob;
     }
 
     public String getBusno() {
@@ -55,3 +54,5 @@ public class person {
         this.to = to;
     }
 }
+
+

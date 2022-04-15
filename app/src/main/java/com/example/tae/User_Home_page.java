@@ -38,7 +38,7 @@ public class User_Home_page extends AppCompatActivity implements BottomNavigatio
 
 
         }
-        User_Bus_List firstFragment = new User_Bus_List();
+        Admin_BusList Bus_list=new Admin_BusList();
         User_Profile_Update secondFragment = new User_Profile_Update();
         User_Settings thirdFragment = new User_Settings();
 
@@ -49,7 +49,7 @@ public class User_Home_page extends AppCompatActivity implements BottomNavigatio
 
             switch (item.getItemId()) {
                 case R.id.person:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, firstFragment).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, Bus_list).commit();
                     return true;
 
                 case R.id.home:
