@@ -26,7 +26,6 @@ public class User_Home_page extends AppCompatActivity implements BottomNavigatio
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_mamainactivity);
             Intent i=getIntent();
-            Toast.makeText(this, user_name, Toast.LENGTH_SHORT).show();
             bottomNavigationView = findViewById(R.id.bottomNavigationView);
             bottomNavigationView.setOnNavigationItemSelectedListener(this);
             bottomNavigationView.setSelectedItemId(R.id.person);

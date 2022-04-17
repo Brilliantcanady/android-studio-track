@@ -6,6 +6,7 @@
         <entry key="..\:/Tae/app/src/main/res/drawable/buttonsstyle.xml" value="0.2505" />
         <entry key="..\:/Tae/app/src/main/res/drawable/recyclerviewdesign.xml" value="0.242" />
         <entry key="..\:/Tae/app/src/main/res/drawable/textviewbgc.xml" value="0.2505" />
+        <entry key="..\:/Tae/app/src/main/res/layout/activity_User_registration.xml" value="0.12916666666666668" />
         <entry key="..\:/Tae/app/src/main/res/layout/activity_adminhome.xml" value="0.2222222222222222" />
         <entry key="..\:/Tae/app/src/main/res/layout/activity_adminlogin.xml" value="0.1" />
         <entry key="..\:/Tae/app/src/main/res/layout/activity_bus_track_menu.xml" value="0.2222222222222222" />
@@ -29,6 +30,7 @@
         <entry key="..\:/Tae/app/src/main/res/layout/recycleitems.xml" value="0.2222222222222222" />
         <entry key="..\:/Tae/app/src/main/res/layout/recyclerviewlayoutdesign_buslist.xml" value="0.2222222222222222" />
         <entry key="..\:/Tae/app/src/main/res/layout/user_list.xml" value="0.2222222222222222" />
+        <entry key="..\:/Tae/app/src/main/res/layout/user_registration.xml" value="0.2222222222222222" />
         <entry key="..\:/Tae/app/src/main/res/menu/admin_menu.xml" value="0.2222222222222222" />
         <entry key="..\:/Tae/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2222222222222222" />
         <entry key="..\:/Tae/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2505" />

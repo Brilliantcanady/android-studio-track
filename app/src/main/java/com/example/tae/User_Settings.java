@@ -17,8 +17,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class User_Settings extends Fragment {
 Button buslogout;
@@ -32,7 +30,7 @@ SharedPreferences sharedPreferences;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
        // mauth=FirebaseAuth.getInstance();
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_third, container, false);
+        View view = inflater.inflate(R.layout.usersettings, container, false);
         sessionLogout(view);
         return view;
     }

@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    style="@style/AppBg"
     android:padding="10dp"
-    tools:context=".Admin_Home">
+    tools:context=".User_Sign_Up">
+
     <ImageView
         android:id="@+id/logoimage"
         android:layout_width="150dp"
@@ -16,7 +16,7 @@
         android:contentDescription="@string/todo" />
 
     <TextView
-        android:text="Hi,Welcome to Bus Registration page"
+        android:text="@string/hi_fill_the_details"
         android:id="@+id/logo_name"
         style="@style/headings" />
 
@@ -25,10 +25,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/antic"
 
-        android:text="fill the details"
+        android:text="@string/signup_to_continue"
         android:textSize="18sp" />
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -40,51 +38,73 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/drivername"
+                android:id="@+id/regName"
                 style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Driver Name"
-                android:inputType="textPersonName">
+                android:hint="@string/full_name">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"></com.google.android.material.textfield.TextInputEditText>
+
+
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/from_city"
+                android:id="@+id/regUsername"
                 style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="From Address"
-                android:inputType="textPersonName">
+                android:hint="@string/username"
+                app:counterEnabled="true"
+                app:counterMaxLength="15">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#616161"></com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
 
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/to_city"
+                android:id="@+id/regPassword"
                 style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="To address"
-                android:inputType="textPersonName">
+                android:hint="@string/password"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColorHint="#616161">
+                    >
+                </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/mob_no"
+                android:id="@+id/regEmail"
                 style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Driver phone no">
+                android:hint="@string/email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="#616161"></com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/regPhoneNo"
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone_no">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -94,31 +114,24 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/bus_no"
-                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Bus No"
-                android:inputType="textPersonName">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-
             <android.widget.Button
-                android:id="@+id/Bus_data_Btn"
+                android:id="@+id/regBtn"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:background="@drawable/buttonsstyle"
                 android:padding="10dp"
-                android:text="Submit" />
+                android:text="Go" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/regToLoginBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="#00000000"
+                style="@style/AppBg"
+                android:text="@string/already_have_an_account_login"
+                />
 
         </LinearLayout>
     </ScrollView>

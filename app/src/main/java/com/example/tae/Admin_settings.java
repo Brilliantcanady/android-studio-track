@@ -28,7 +28,7 @@ public class Admin_settings extends Fragment {
                              Bundle savedInstanceState) {
         mauth=FirebaseAuth.getInstance();
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_third, container, false);
+        View view = inflater.inflate(R.layout.usersettings, container, false);
         sessionLogout(view);
         return view;
     }

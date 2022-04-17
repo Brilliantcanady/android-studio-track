@@ -113,7 +113,7 @@ public class Admin_LoginPage extends AppCompatActivity {
                         loginuser.setError(null);
                         loginuser.setErrorEnabled(false);
 
-                        Toast.makeText(Admin_LoginPage.this, "successfully logged in", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Admin_LoginPage.this, "successfully logged in", Toast.LENGTH_SHORT).show();
                         //Intent i = new Intent(Login.this, UserProfile.class);
                         Intent inte=new Intent(Admin_LoginPage.this, Admin_Home.class);
                         inte.putExtra("username",enteredusername);
