@@ -20,7 +20,7 @@
         android:id="@+id/logo_name"
         style="@style/headings"
 
-        android:text="Admin pr0file"
+        android:text="Admin Profile"
         />
 
 
@@ -93,6 +93,21 @@
                     android:textColorHint="#616161">
 
                 </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/regcodeNo"
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Unique Code">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
 

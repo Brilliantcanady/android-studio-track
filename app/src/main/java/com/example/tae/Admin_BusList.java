@@ -1,6 +1,12 @@
 package com.example.tae;
 
+import static com.example.tae.Admin_LoginPage.adminUniquecode;
+import static com.example.tae.Admin_LoginPage.adminfilename;
+import static com.example.tae.User_Login_Page.Uniquecode;
+import static com.example.tae.User_Login_Page.filename;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,14 +30,21 @@ public class Admin_BusList extends Fragment {
     private RecyclerView recyclerView;
     personAdapter adapter; // Create Object of the Adapter class
     DatabaseReference mbase; // Create object of the
-AdapterView.OnItemClickListener     itemClickListener;
+    SharedPreferences sharedPreferences;
+    String unicodeno;
+    AdapterView.OnItemClickListener     itemClickListener;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.recycleitems, container, false);
-        mbase = FirebaseDatabase.getInstance().getReference().child("bus");
+        sharedPreferences=getActivity().getApplicationContext().getSharedPreferences(adminfilename, getActivity().getApplicationContext().MODE_PRIVATE);
+        if(sharedPreferences.contains(adminUniquecode)){
+
+            Toast.makeText(getActivity().getApplicationContext(),sharedPreferences.getString(adminUniquecode,"") , Toast.LENGTH_SHORT).show();
+        }
+        mbase = FirebaseDatabase.getInstance().getReference().child("bus").child(sharedPreferences.getString(adminUniquecode,""));
 
         recyclerView = view.findViewById(R.id.recycler1);
         itemClickListener =new AdapterView.OnItemClickListener() {

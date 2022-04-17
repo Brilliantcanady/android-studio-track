@@ -30,6 +30,7 @@ SharedPreferences sharedPreferences;
 public static final String filename="login";
 public static final String username="username";
 public static final String password="password";
+    public static final String Uniquecode="Uniquecode";
     FirebaseAuth mAuth;
 
 

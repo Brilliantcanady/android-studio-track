@@ -1,9 +1,12 @@
 package com.example.tae;
 
+import static com.example.tae.User_Login_Page.filename;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,12 +23,17 @@ import com.google.firebase.database.ValueEventListener;
 public class Admin_LoginPage extends AppCompatActivity {
     Button loginbutton,user_screen;
     TextInputLayout loginuser,loginpass;
+    SharedPreferences sharedPreferences;
+    public static final String adminfilename="adminlogin";
+    public static final String adminusername="username";
+    public static final String adminpassword="password";
+    public static final String adminUniquecode="Uniquecode";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_adminlogin);
-
+        sharedPreferences=getApplicationContext().getSharedPreferences(adminfilename, getApplicationContext().MODE_PRIVATE);
         loginuser=findViewById(R.id.username);
         loginpass=findViewById(R.id.password);
         loginbutton=findViewById(R.id.loginbutton);
@@ -115,6 +123,10 @@ public class Admin_LoginPage extends AppCompatActivity {
 
                         //Toast.makeText(Admin_LoginPage.this, "successfully logged in", Toast.LENGTH_SHORT).show();
                         //Intent i = new Intent(Login.this, UserProfile.class);
+                        SharedPreferences.Editor editor=sharedPreferences.edit();
+                        editor.putString(adminusername,enteredusername);
+                        editor.putString(adminpassword,enteredpassword);
+                        editor.commit();
                         Intent inte=new Intent(Admin_LoginPage.this, Admin_Home.class);
                         inte.putExtra("username",enteredusername);
                         startActivity(inte);

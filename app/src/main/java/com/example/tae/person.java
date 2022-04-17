@@ -8,9 +8,18 @@ public class person
     private String busno;
     private String from;
     private String to;
+    private String uniquecode;
 
 
-    public person() {}
+    public person(){
+    }
+    public String getUniquecode() {
+        return uniquecode;
+    }
+
+    public void setUniquecode(String uniquecode) {
+        this.uniquecode = uniquecode;
+    }
 
     // Getter and setter method
 

@@ -1,5 +1,6 @@
 package com.example.tae;
 
+import static com.example.tae.User_Login_Page.Uniquecode;
 import static com.example.tae.User_Login_Page.filename;
 import static com.example.tae.User_Login_Page.password;
 import static com.example.tae.User_Login_Page.username;
@@ -29,11 +30,11 @@ import com.google.firebase.database.ValueEventListener;
 public class User_Profile_Update extends Fragment {
 
 
-    TextInputLayout regName, regEmail, regPhoneNo, regPassword;
+    TextInputLayout regName, regEmail, regPhoneNo, regPassword,codeno;
     Button update;
     SharedPreferences sharedPreferences;
     DatabaseReference reference;
-    String namefromDB, emailfromDB, phonenofromDB, passwordfromDB, pusername;
+    String namefromDB, emailfromDB, phonenofromDB, passwordfromDB, pusername,codefromdb;
 
     public User_Profile_Update() {
         // require a empty public constructor
@@ -51,13 +52,14 @@ public class User_Profile_Update extends Fragment {
         regEmail = container.findViewById(R.id.regEmail);
         regPhoneNo = container.findViewById(R.id.regPhoneNo);
         regPassword = container.findViewById(R.id.regPassword);
+        codeno=container.findViewById(R.id.regcodeNo);
         update = container.findViewById(R.id.updateBtn);
 
         showalldata();
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ispasswordchange() | isnamechange() | isemailchange() | isphonenochange()) {
+                if (ispasswordchange() | isnamechange() | isemailchange() | isphonenochange() | isucodenochange()) {
                     Toast.makeText(getActivity().getApplicationContext(), "Data is updated", Toast.LENGTH_SHORT).show();
 
                 } else {
@@ -140,6 +142,17 @@ public class User_Profile_Update extends Fragment {
             return false;
         }
     }
+
+    private boolean isucodenochange() {
+        if (!codefromdb.equals(codeno.getEditText().getText().toString()) && validatePhoneNumber()) {
+
+            reference.child(pusername).child("uniquecode").setValue(codeno.getEditText().getText().toString());
+            phonenofromDB = codeno.getEditText().getText().toString();
+            return true;
+        } else {
+            return false;
+        }
+    }
     private Boolean validatePassword() {
         String val = regPassword.getEditText().getText().toString();
         String passwordVal = "^" +
@@ -195,13 +208,17 @@ public class User_Profile_Update extends Fragment {
                 emailfromDB = snapshot.child(pusername).child("email").getValue(String.class);
                 phonenofromDB = snapshot.child(pusername).child("phoneNo").getValue(String.class);
                 passwordfromDB = snapshot.child(pusername).child("password").getValue(String.class);
+                codefromdb=snapshot.child(pusername).child("uniquecode").getValue(String.class);
+
 
                 regName.getEditText().setText(namefromDB);
                 regEmail.getEditText().setText(emailfromDB);
                 regPhoneNo.getEditText().setText(phonenofromDB);
                 regPassword.getEditText().setText(passwordfromDB);
+                codeno.getEditText().setText(codefromdb);
                 SharedPreferences.Editor editor=sharedPreferences.edit();
                 editor.putString(password,passwordfromDB);
+                editor.putString(Uniquecode,codefromdb);
                 editor.commit();
             }
 

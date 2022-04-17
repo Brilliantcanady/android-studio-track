@@ -2,7 +2,7 @@ package com.example.tae;
 
 public class User_Schema {
 
-    String name, username, email, phoneNo, password;
+    String name, username, email, phoneNo, password,uniquecode;
 
     public User_Schema(String name, String username, String email, String phoneNo, String password) {
         this.name = name;
@@ -10,6 +10,15 @@ public class User_Schema {
         this.email = email;
         this.phoneNo = phoneNo;
         this.password = password;
+        setuniquecode("0000");
+    }
+
+    public String getuniquecode() {
+        return uniquecode;
+    }
+
+    public void setuniquecode(String uniquecode) {
+        this.uniquecode = uniquecode;
     }
 
     public String getName() {

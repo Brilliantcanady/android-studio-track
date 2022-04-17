@@ -37,7 +37,7 @@ public class User_Home_page extends AppCompatActivity implements BottomNavigatio
 
 
         }
-        Admin_BusList Bus_list=new Admin_BusList();
+        User_Bus_List Bus_list=new User_Bus_List();
         User_Profile_Update secondFragment = new User_Profile_Update();
         User_Settings thirdFragment = new User_Settings();
 

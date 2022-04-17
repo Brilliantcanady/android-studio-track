@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class User_Sign_Up extends AppCompatActivity {
 
-    TextInputLayout regName, regUsername, regEmail, regPhoneNo, regPassword;
+    TextInputLayout regName, regUsername, regEmail, regPhoneNo, regPassword,regcodeno;
     Button regBtn, regToLoginBtn;
 
     FirebaseDatabase rootNode;
@@ -22,7 +22,7 @@ public class User_Sign_Up extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.user_registration);
 
 
         regName = findViewById(R.id.regName);
@@ -56,6 +56,7 @@ public class User_Sign_Up extends AppCompatActivity {
                 String email = regEmail.getEditText().getText().toString();
                 String phoneNo = regPhoneNo.getEditText().getText().toString();
                 String password = regPassword.getEditText().getText().toString();
+
                 User_Schema helperClass = new User_Schema(name, username, email, phoneNo, password);
                 reference.child(username).setValue(helperClass);
                 Toast.makeText(User_Sign_Up.this, "Registered successfully", Toast.LENGTH_SHORT).show();
