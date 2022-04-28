@@ -61,7 +61,7 @@ public Admin_Bus_Registration(){
         sharedPreferences=getActivity().getApplicationContext().getSharedPreferences(adminfilename, getActivity().getApplicationContext().MODE_PRIVATE);
         if(sharedPreferences.contains(adminUniquecode)){
 
-           Toast.makeText(getActivity().getApplicationContext(),sharedPreferences.getString(adminUniquecode,"") , Toast.LENGTH_SHORT).show();
+           //Toast.makeText(getActivity().getApplicationContext(),sharedPreferences.getString(adminUniquecode,"") , Toast.LENGTH_SHORT).show();
         }
         unicodeno= sharedPreferences.getString(adminUniquecode,"");
         codeno.getEditText().setText(unicodeno);

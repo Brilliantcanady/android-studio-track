@@ -42,7 +42,7 @@ public class Admin_BusList extends Fragment {
         sharedPreferences=getActivity().getApplicationContext().getSharedPreferences(adminfilename, getActivity().getApplicationContext().MODE_PRIVATE);
         if(sharedPreferences.contains(adminUniquecode)){
 
-            Toast.makeText(getActivity().getApplicationContext(),sharedPreferences.getString(adminUniquecode,"") , Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity().getApplicationContext(),sharedPreferences.getString(adminUniquecode,"") , Toast.LENGTH_SHORT).show();
         }
         mbase = FirebaseDatabase.getInstance().getReference().child("bus").child(sharedPreferences.getString(adminUniquecode,""));
 

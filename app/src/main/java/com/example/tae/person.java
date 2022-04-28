@@ -4,7 +4,7 @@ public class person
 
     private String firstname;
     private String drivername;
-    private String mob;
+    private String mobile;
     private String busno;
     private String from;
     private String to;
@@ -31,12 +31,12 @@ public class person
         this.drivername = drivername;
     }
 
-    public String getMob() {
-        return mob;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setMob(String mob) {
-        this.mob = mob;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getBusno() {

@@ -3,11 +3,16 @@ package com.example.tae;
 import static com.example.tae.User_Login_Page.filename;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -41,12 +46,14 @@ public class Admin_LoginPage extends AppCompatActivity {
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!validatePassword() | !validateUsername())
-                {
-                    return;
-                }
-                else {
-                    isUser();
+                if (!isConnected(Admin_LoginPage.this)) {
+                    showCustomDialog();
+                } else {
+                    if (!validatePassword() | !validateUsername()) {
+                        return;
+                    } else {
+                        isUser();
+                    }
                 }
             }
         });
@@ -150,5 +157,39 @@ public class Admin_LoginPage extends AppCompatActivity {
         });
 
 
+    }
+
+
+    private Boolean isConnected(Admin_LoginPage user_login_page){
+        ConnectivityManager connectivityManager= (ConnectivityManager) user_login_page.getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo wificonn=connectivityManager.getNetworkInfo(connectivityManager.TYPE_WIFI);
+        NetworkInfo mobileconn=connectivityManager.getNetworkInfo(connectivityManager.TYPE_MOBILE);
+        if((wificonn!=null && wificonn.isConnected()) || (mobileconn!=null && mobileconn.isConnected()))
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+    private void showCustomDialog() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(Admin_LoginPage.this);
+        builder.setMessage("Please connect to internet to proceed further")
+                .setCancelable(false)
+                .setPositiveButton("connect", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    }
+                })
+                .setNegativeButton("cancle", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+        //Toast.makeText(this, "dflkjfdk", Toast.LENGTH_SHORT).show();
+        AlertDialog alert=builder.create();
+        alert.show();
     }
 }

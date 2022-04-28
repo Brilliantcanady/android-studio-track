@@ -35,6 +35,8 @@
         <entry key="..\:/Tae/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2222222222222222" />
         <entry key="..\:/Tae/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2505" />
         <entry key="..\:/Tae/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2505" />
+        <entry key="..\:/android-studio-track/app/src/main/res/drawable/buttonsstyle.xml" value="0.2505" />
+        <entry key="..\:/android-studio-track/app/src/main/res/drawable/cardbg.xml" value="0.2505" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/activity_adminhome.xml" value="0.25" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/activity_adminlogin.xml" value="0.25" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/activity_bus_track_menu.xml" value="0.25" />
@@ -43,14 +45,18 @@
         <entry key="..\:/android-studio-track/app/src/main/res/layout/activity_mamainactivity.xml" value="0.25" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/activity_user_profile.xml" value="0.25" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/fragment_admin__bus__registration.xml" value="0.25" />
+        <entry key="..\:/android-studio-track/app/src/main/res/layout/fragment_admin_map_page.xml" value="0.25" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/fragment_admin_profile.xml" value="0.25" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/fragment_admin_settings.xml" value="0.25" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/fragment_testing.xml" value="0.25" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/fragment_user__buslist.xml" value="0.25" />
+        <entry key="..\:/android-studio-track/app/src/main/res/layout/fragment_user_map_page.xml" value="0.2359375" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/recycleitems.xml" value="0.25" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/recyclerviewlayoutdesign_buslist.xml" value="0.25" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/user_registration.xml" value="0.25" />
         <entry key="..\:/android-studio-track/app/src/main/res/layout/usersettings.xml" value="0.25" />
+        <entry key="..\:/android-studio-track/app/src/main/res/menu/admin_menu.xml" value="0.25" />
+        <entry key="..\:/android-studio-track/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

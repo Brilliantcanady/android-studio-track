@@ -1,12 +1,18 @@
 package com.example.tae;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -66,26 +72,56 @@ public static final String password="password";
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!validatePassword() | !validateUsername())
-                {
-                    return;
-                }
-                else {
-                    isUser();
+                if (!isConnected(User_Login_Page.this)) {
+                    showCustomDialog();
+                } else {
+                    if (!validatePassword() | !validateUsername()) {
+                        return;
+                    } else {
+                        isUser();
+                    }
                 }
             }
         });
-
         mAuth= FirebaseAuth.getInstance();
-
         if(sharedPreferences.contains(username)){
             //Toast.makeText(this, "shared", Toast.LENGTH_SHORT).show();
             Intent inte=new Intent(User_Login_Page.this, User_Home_page.class);
            startActivity(inte);
         }
     }
+    private Boolean isConnected(User_Login_Page user_login_page){
+        ConnectivityManager connectivityManager= (ConnectivityManager) user_login_page.getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo wificonn=connectivityManager.getNetworkInfo(connectivityManager.TYPE_WIFI);
+        NetworkInfo mobileconn=connectivityManager.getNetworkInfo(connectivityManager.TYPE_MOBILE);
+        if((wificonn!=null && wificonn.isConnected()) || (mobileconn!=null && mobileconn.isConnected()))
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
 
-
+    }
+    private void showCustomDialog() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(User_Login_Page.this);
+        builder.setMessage("Please connect to internet to proceed further")
+                .setCancelable(false)
+                .setPositiveButton("connect", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    }
+                })
+                .setNegativeButton("cancle", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+        //Toast.makeText(this, "dflkjfdk", Toast.LENGTH_SHORT).show();
+AlertDialog alert=builder.create();
+alert.show();
+    }
 //end of oncreate
         private Boolean validateUsername(){
             String val = loginuser.getEditText().getText().toString();

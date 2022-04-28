@@ -28,7 +28,7 @@ public class User_Home_page extends AppCompatActivity implements BottomNavigatio
             Intent i=getIntent();
             bottomNavigationView = findViewById(R.id.bottomNavigationView);
             bottomNavigationView.setOnNavigationItemSelectedListener(this);
-            bottomNavigationView.setSelectedItemId(R.id.person);
+            bottomNavigationView.setSelectedItemId(R.id.maps);
             sharedPreferences=getSharedPreferences(filename, Context.MODE_PRIVATE);
             if(sharedPreferences.contains(username)){
                 user_name=sharedPreferences.getString(username,"");
@@ -37,6 +37,7 @@ public class User_Home_page extends AppCompatActivity implements BottomNavigatio
 
 
         }
+        User_map_page usermap=new User_map_page();
         User_Bus_List Bus_list=new User_Bus_List();
         User_Profile_Update secondFragment = new User_Profile_Update();
         User_Settings thirdFragment = new User_Settings();
@@ -47,6 +48,10 @@ public class User_Home_page extends AppCompatActivity implements BottomNavigatio
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
             switch (item.getItemId()) {
+                case R.id.maps:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, usermap).commit();
+                    return true;
+
                 case R.id.person:
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, Bus_list).commit();
                     return true;

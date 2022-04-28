@@ -40,7 +40,7 @@ public class User_Bus_List extends Fragment {
         sharedPreferences=getActivity().getApplicationContext().getSharedPreferences(filename, getActivity().getApplicationContext().MODE_PRIVATE);
         if(sharedPreferences.contains(Uniquecode)){
 
-            Toast.makeText(getActivity().getApplicationContext(),sharedPreferences.getString(Uniquecode,"") , Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity().getApplicationContext(),sharedPreferences.getString(Uniquecode,"") , Toast.LENGTH_SHORT).show();
         }
         mbase = FirebaseDatabase.getInstance().getReference().child("bus").child(sharedPreferences.getString(Uniquecode,""));
 

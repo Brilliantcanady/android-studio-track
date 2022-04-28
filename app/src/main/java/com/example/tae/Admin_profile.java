@@ -217,7 +217,7 @@ pusername="venky";
                 codeno.getEditText().setText(codefromdb);
                 SharedPreferences.Editor editor=sharedPreferences.edit();
                 editor.putString(adminUniquecode,codefromdb);
-                Toast.makeText(getContext(), sharedPreferences.getString(adminUniquecode,""), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), sharedPreferences.getString(adminUniquecode,""), Toast.LENGTH_SHORT).show();
                 editor.commit();
             }
 

@@ -3,30 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="12dp"
     app:cardCornerRadius="12dp"
-    android:layout_margin="16dp"
+    android:layout_margin="8dp"
     android:clickable="true"
     android:focusable="true"
-    android:checkable="true"
-    >
+    android:checkable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/cardbg"
         android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/cardbg"
+        android:padding="10dp"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:padding="2dp"
             android:layout_gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name:"
+                android:text="Name              "
                 android:textSize="24dp"
                 android:textStyle="bold"
                 android:textColor="@color/black" />
@@ -43,12 +48,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:padding="2dp"
             android:layout_gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BusNumber:"
+                android:text="Bus Number   "
                 android:textSize="24dp"
                 android:textStyle="bold"
                 android:textColor="@color/black" />
@@ -65,12 +71,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:padding="2dp"
             android:layout_gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mobile Number:"
+                android:text="Mob No           "
                 android:textSize="24dp"
                 android:textStyle="bold"
                 android:textColor="@color/black" />
@@ -87,12 +94,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:padding="2dp"
             android:layout_gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="From City:"
+                android:text="From               "
                 android:textSize="24dp"
                 android:textStyle="bold"
                 android:textColor="@color/black" />
@@ -109,12 +117,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:padding="2dp"
             android:layout_gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="To City:"
+                android:text="To                    "
                 android:textSize="24dp"
                 android:textStyle="bold"
                 android:textColor="@color/black" />
@@ -126,6 +135,7 @@
                 android:textSize="24dp"
                 android:textColor="@color/black" />
         </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

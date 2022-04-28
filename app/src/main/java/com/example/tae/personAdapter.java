@@ -1,5 +1,4 @@
 package com.example.tae;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,7 @@ class personAdapter extends FirebaseRecyclerAdapter<
         // Add age from model class (here
         // "person.class")to appropriate view in Card
         // view (here "person.xml")
-        holder.mob.setText(model.getMob());
+        holder.mobile.setText(model.getMobile());
         holder.from.setText(model.getFrom());
         holder.to.setText(model.getTo());
     }
@@ -57,13 +56,13 @@ class personAdapter extends FirebaseRecyclerAdapter<
     // Sub Class to create references of the views in Crad
     // view (here "person.xml")
     class personsViewholder extends RecyclerView.ViewHolder {
-        TextView drivername, busno, mob,from,to;
+        TextView drivername, busno, mobile,from,to;
         public personsViewholder(@NonNull View itemView)
         {
             super(itemView);
             drivername = itemView.findViewById(R.id.textname);
             busno = itemView.findViewById(R.id.textbusno);
-            mob = itemView.findViewById(R.id.textmob);
+            mobile = itemView.findViewById(R.id.textmob);
             from=itemView.findViewById(R.id.textfrom);
             to=itemView.findViewById(R.id.textto);
         }

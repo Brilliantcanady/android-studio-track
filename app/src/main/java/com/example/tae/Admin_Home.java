@@ -22,10 +22,10 @@ public class Admin_Home extends AppCompatActivity implements BottomNavigationVie
         user_name=i.getStringExtra("username");
         bottomNavigation = findViewById(R.id.bottomNavigation);
         bottomNavigation.setOnNavigationItemSelectedListener(this);
-        bottomNavigation.setSelectedItemId(R.id.Buslist);
+        bottomNavigation.setSelectedItemId(R.id.maps);
     }
 
-
+    Admin_map_page mappage=new Admin_map_page();
     Admin_BusList Bus_list=new Admin_BusList();
     Admin_Bus_Registration Bus_regist=new Admin_Bus_Registration();
     Admin_profile Bus_profile = new Admin_profile();
@@ -36,6 +36,9 @@ public class Admin_Home extends AppCompatActivity implements BottomNavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
+            case R.id.maps:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, mappage).commit();
+                return true;
             case R.id.Buslist:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, Bus_list).commit();
                 return true;
