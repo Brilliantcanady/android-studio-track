@@ -2,7 +2,7 @@ package com.example.tae;
 
 public class User_Schema {
 
-    String name, username, email, phoneNo, password,uniquecode;
+    String name, username, email, phoneNo, password,uniquecode,regbus;
 
     public User_Schema(String name, String username, String email, String phoneNo, String password) {
         this.name = name;
@@ -11,6 +11,15 @@ public class User_Schema {
         this.phoneNo = phoneNo;
         this.password = password;
         setuniquecode("0000");
+        setRegbus("");
+    }
+
+    public String getRegbus() {
+        return regbus;
+    }
+
+    public void setRegbus(String regbus) {
+        this.regbus = regbus;
     }
 
     public String getuniquecode() {

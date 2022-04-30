@@ -7,7 +7,7 @@ public class BusSchema {
     String from;
     String to;
     String adminuniquecode;
-    int lat,ing;
+    int latitude, longitude;
 
     public BusSchema(String drivername, String mobile, String busno, String from, String to,String uniquecodeno) {
         this.drivername = drivername;
@@ -16,24 +16,24 @@ public class BusSchema {
         this.from = from;
         this.to = to;
         this.adminuniquecode=uniquecodeno;
-        this.lat=0;
-        this.ing=0;
+        this.latitude =0;
+        this.longitude =0;
     }
 
-    public int getLat() {
-        return lat;
+    public int getLatitude() {
+        return latitude;
     }
 
-    public void setLat(int lat) {
-        this.lat = lat;
+    public void setLatitude(int latitude) {
+        this.latitude = latitude;
     }
 
-    public int getIng() {
-        return ing;
+    public int getLongitude() {
+        return longitude;
     }
 
-    public void setIng(int ing) {
-        this.ing = ing;
+    public void setLongitude(int longitude) {
+        this.longitude = longitude;
     }
 
     public String getUniquecode() {

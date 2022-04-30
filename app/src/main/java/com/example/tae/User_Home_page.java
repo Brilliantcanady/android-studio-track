@@ -37,7 +37,7 @@ public class User_Home_page extends AppCompatActivity implements BottomNavigatio
 
 
         }
-        User_map_page usermap=new User_map_page();
+    User_MapsFragment usermap=new User_MapsFragment();
         User_Bus_List Bus_list=new User_Bus_List();
         User_Profile_Update secondFragment = new User_Profile_Update();
         User_Settings thirdFragment = new User_Settings();

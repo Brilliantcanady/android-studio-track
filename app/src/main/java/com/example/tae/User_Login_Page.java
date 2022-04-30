@@ -30,28 +30,30 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class User_Login_Page extends AppCompatActivity {
- Button callSignup,loginbutton,admin_screen;
- TextInputLayout loginuser,loginpass;
-SharedPreferences sharedPreferences;
-public static final String filename="login";
-public static final String username="username";
-public static final String password="password";
-    public static final String Uniquecode="Uniquecode";
+    public static final String filename = "login";
+    public static final String username = "username";
+    public static final String password = "password";
+    public static final String reguserbus = "reguserbus";
+    public static final String Uniquecode = "Uniquecode";
+    Button callSignup, loginbutton, admin_screen;
+    TextInputLayout loginuser, loginpass;
+    SharedPreferences sharedPreferences;
     FirebaseAuth mAuth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
 
         callSignup = findViewById(R.id.signup_screen);
-        loginuser=findViewById(R.id.username);
-        loginpass=findViewById(R.id.password);
-        admin_screen=findViewById(R.id.admin_screen);
-        sharedPreferences=this.getSharedPreferences(filename,getApplicationContext().MODE_PRIVATE);
+        loginuser = findViewById(R.id.username);
+        loginpass = findViewById(R.id.password);
+        admin_screen = findViewById(R.id.admin_screen);
+        sharedPreferences = this.getSharedPreferences(filename, getApplicationContext().MODE_PRIVATE);
 
 
         admin_screen.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +70,7 @@ public static final String password="password";
                 startActivity(intent);
             }
         });
-        loginbutton=findViewById(R.id.loginbutton);
+        loginbutton = findViewById(R.id.loginbutton);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,28 +85,28 @@ public static final String password="password";
                 }
             }
         });
-        mAuth= FirebaseAuth.getInstance();
-        if(sharedPreferences.contains(username)){
+        mAuth = FirebaseAuth.getInstance();
+        if (sharedPreferences.contains(username)) {
             //Toast.makeText(this, "shared", Toast.LENGTH_SHORT).show();
-            Intent inte=new Intent(User_Login_Page.this, User_Home_page.class);
-           startActivity(inte);
+            Intent inte = new Intent(User_Login_Page.this, User_Home_page.class);
+            startActivity(inte);
         }
     }
-    private Boolean isConnected(User_Login_Page user_login_page){
-        ConnectivityManager connectivityManager= (ConnectivityManager) user_login_page.getSystemService(CONNECTIVITY_SERVICE);
-        NetworkInfo wificonn=connectivityManager.getNetworkInfo(connectivityManager.TYPE_WIFI);
-        NetworkInfo mobileconn=connectivityManager.getNetworkInfo(connectivityManager.TYPE_MOBILE);
-        if((wificonn!=null && wificonn.isConnected()) || (mobileconn!=null && mobileconn.isConnected()))
-        {
+
+    private Boolean isConnected(User_Login_Page user_login_page) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) user_login_page.getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo wificonn = connectivityManager.getNetworkInfo(connectivityManager.TYPE_WIFI);
+        NetworkInfo mobileconn = connectivityManager.getNetworkInfo(connectivityManager.TYPE_MOBILE);
+        if ((wificonn != null && wificonn.isConnected()) || (mobileconn != null && mobileconn.isConnected())) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
 
     }
+
     private void showCustomDialog() {
-        AlertDialog.Builder builder=new AlertDialog.Builder(User_Login_Page.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(User_Login_Page.this);
         builder.setMessage("Please connect to internet to proceed further")
                 .setCancelable(false)
                 .setPositiveButton("connect", new DialogInterface.OnClickListener() {
@@ -119,71 +121,67 @@ public static final String password="password";
                     }
                 });
         //Toast.makeText(this, "dflkjfdk", Toast.LENGTH_SHORT).show();
-AlertDialog alert=builder.create();
-alert.show();
+        AlertDialog alert = builder.create();
+        alert.show();
     }
-//end of oncreate
-        private Boolean validateUsername(){
-            String val = loginuser.getEditText().getText().toString();
-            String noWhiteSpace="(?=\\s+$)";
-            if (val.isEmpty()) {
-                loginuser.setError("Field cannot be empty");
-                return false;
-            } else if (val.length() >= 15){
-                loginuser.setError("Username too long");
-                return false;
-            }
-            else if(val.matches(noWhiteSpace)){
-                loginuser.setError("White Spaces not allowed");
-                return false;
-            }
-            else{
-                loginuser.setError(null);
-                loginuser.setErrorEnabled(false);
-                return true;
-            }
-        }
 
-        private Boolean validatePassword(){
-            String val =loginpass.getEditText().getText().toString();
-            String passwordVal="^"+
-                    "(?=.*[0-9])"+
-                    "(?=.*[a-z])"+
-                    "(?=.*[A-Z])"+
-                    "(?=.*[a-zA-Z])"+
-                    "(?=.*[@#$%^&+=])"+
-                    "(?=\\S+$)"+
-                    ".{4,}"+
-                    "$";
-            if(val.isEmpty())
-            {
-                loginpass.setError("Field cannot be empty");
-                return false;
-            }
-            else if(!val.matches(passwordVal)){
-                loginpass.setError("Password is wrong");
-                return false;
-            }
-            else{
-                loginpass.setError(null);
-                return true;
-            }
+    //end of oncreate
+    private Boolean validateUsername() {
+        String val = loginuser.getEditText().getText().toString();
+        String noWhiteSpace = "(?=\\s+$)";
+        if (val.isEmpty()) {
+            loginuser.setError("Field cannot be empty");
+            return false;
+        } else if (val.length() >= 15) {
+            loginuser.setError("Username too long");
+            return false;
+        } else if (val.matches(noWhiteSpace)) {
+            loginuser.setError("White Spaces not allowed");
+            return false;
+        } else {
+            loginuser.setError(null);
+            loginuser.setErrorEnabled(false);
+            return true;
         }
+    }
+
+    private Boolean validatePassword() {
+        String val = loginpass.getEditText().getText().toString();
+        String passwordVal = "^" +
+                "(?=.*[0-9])" +
+                "(?=.*[a-z])" +
+                "(?=.*[A-Z])" +
+                "(?=.*[a-zA-Z])" +
+                "(?=.*[@#$%^&+=])" +
+                "(?=\\S+$)" +
+                ".{4,}" +
+                "$";
+        if (val.isEmpty()) {
+            loginpass.setError("Field cannot be empty");
+            return false;
+        } else if (!val.matches(passwordVal)) {
+            loginpass.setError("Password is wrong");
+            return false;
+        } else {
+            loginpass.setError(null);
+            return true;
+        }
+    }
 
 
     private void isUser() {
-        String enteredusername =loginuser.getEditText().getText().toString();
-        String enteredpassword= loginpass.getEditText().getText().toString();
+        String enteredusername = loginuser.getEditText().getText().toString();
+        String enteredpassword = loginpass.getEditText().getText().toString();
 
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference("users");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
 
 
-        Query checkuser=reference.orderByChild("username").equalTo(enteredusername);
+        Query checkuser = reference.orderByChild("username").equalTo(enteredusername);
 
         checkuser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
+                if (snapshot.exists()) {
                     loginuser.setError(null);
                     loginuser.setErrorEnabled(false);
 
@@ -194,14 +192,14 @@ alert.show();
                         loginuser.setErrorEnabled(false);
 
                         Toast.makeText(User_Login_Page.this, "successfully logged in", Toast.LENGTH_SHORT).show();
-                        SharedPreferences.Editor editor=sharedPreferences.edit();
-                        editor.putString(username,enteredusername);
-                        editor.putString(password,enteredpassword);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(username, enteredusername);
+                        editor.putString(password, enteredpassword);
                         editor.commit();
 
-                       // Intent i = new Intent(Login.this, UserProfile.class);
-                        Intent inte=new Intent(User_Login_Page.this, User_Home_page.class);
-                        inte.putExtra("username",enteredusername);
+                        // Intent i = new Intent(Login.this, UserProfile.class);
+                        Intent inte = new Intent(User_Login_Page.this, User_Home_page.class);
+                        inte.putExtra("username", enteredusername);
                         startActivity(inte);
 
 
@@ -213,8 +211,7 @@ alert.show();
                         loginpass.requestFocus();
 
                     }
-                }
-                else{
+                } else {
                     loginuser.setError("invalid user");
                     loginuser.requestFocus();
                 }

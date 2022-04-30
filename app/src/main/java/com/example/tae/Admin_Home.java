@@ -25,7 +25,7 @@ public class Admin_Home extends AppCompatActivity implements BottomNavigationVie
         bottomNavigation.setSelectedItemId(R.id.maps);
     }
 
-    Admin_map_page mappage=new Admin_map_page();
+    Admin_MapsFragment mappage=new Admin_MapsFragment();
     Admin_BusList Bus_list=new Admin_BusList();
     Admin_Bus_Registration Bus_regist=new Admin_Bus_Registration();
     Admin_profile Bus_profile = new Admin_profile();

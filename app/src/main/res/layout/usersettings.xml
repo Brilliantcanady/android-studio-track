@@ -1,46 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        style="@style/AppBg"
-        android:padding="10dp"
-        tools:context=".User_Home_page">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppBg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".User_Home_page">
+
     <ImageView
         android:id="@+id/logoimage"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/bus100"
-        android:contentDescription="@string/todo" />
+        android:contentDescription="@string/todo"
+        android:src="@drawable/bus100" />
 
     <TextView
-        android:text="Settings"
         android:id="@+id/logo_name"
-        style="@style/headings" />
+        style="@style/headings"
+        android:text="Settings" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/reguserbus"
+                    style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:hint="Enter bus number you want to get notify">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <android.widget.Button
+                    android:id="@+id/busupdatebutton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="OK" />
+            </LinearLayout>
+
+            <android.widget.Button
+                android:id="@+id/timeselect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/buttonsstyle"
+                android:text="set time to notify" />
 
 
+            <android.widget.Button
+                android:id="@+id/Bus_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/buttonsstyle"
+                android:text="Logout" />
 
-    <android.widget.Button
-        android:id="@+id/Bus_logout"
-        android:layout_width="match_parent"
-        android:layout_gravity="center"
-        android:paddingBottom="10dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/buttonsstyle"
-        android:text="Logout" />
-
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>
