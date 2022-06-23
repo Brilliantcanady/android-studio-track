@@ -21,29 +21,45 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 public class User_MapsFragment extends Fragment implements LocationListener {
+    private final int MIN_TIME = 1000;
+    private final int MIN_DISTANCE = 1;
+    SupportMapFragment smf;
+    TextView dist;
+    FusedLocationProviderClient client;
+    GoogleMap googleMap1;
     SharedPreferences sharedPreferences;
     DatabaseReference reference;
-    private LocationManager manager;
     Marker mymarker;
-private final int MIN_TIME=1000;
-private final int MIN_DISTANCE=1;
-    int latitude=-34,longitude=151;
+    Double latitude = -34.0900, longitude = 151.000,curlat=34.000000,curlong=15.00000;
+    private LocationManager manager;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -58,14 +74,16 @@ private final int MIN_DISTANCE=1;
         @Override
         public void onMapReady(GoogleMap googleMap) {
             //LatLng sydney = new LatLng(-34, 151);
+            LatLng[] sydney1 = {new LatLng(15, 80)};
+            googleMap1 = googleMap;
 
 
-            LatLng sydney1 = new LatLng(15,80);
-           mymarker= googleMap.addMarker(new MarkerOptions().position(sydney1).title("Marker in Bus"));
-           //googleMap.setMinZoomPreference(50);
-           googleMap.getUiSettings().setZoomControlsEnabled(true);
+            mymarker = googleMap.addMarker(new MarkerOptions().position(sydney1[0]).title("Bus location")
+                    .snippet("Current bus location"));
+            //googleMap.setMinZoomPreference(50);
+            googleMap.getUiSettings().setZoomControlsEnabled(true);
             googleMap.getUiSettings().setAllGesturesEnabled(true);
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney1));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney1[0]));
 
         }
     };
@@ -75,7 +93,32 @@ private final int MIN_DISTANCE=1;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_user__maps, container, false);
+        View view = inflater.inflate(R.layout.fragment_user__maps, container, false);
+        dist=view.findViewById(R.id.dist);
+
+        client = LocationServices.getFusedLocationProviderClient(getContext());
+        Dexter.withContext(getContext())
+                .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                        getmylocation();
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+
+                    }
+
+                }).check();
+
+
+        return view;
     }
 
     @Override
@@ -87,69 +130,78 @@ private final int MIN_DISTANCE=1;
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
             try {
-                getLocationUpdate();
+                //getLocationUpdate();
                 readChanges();
+                getmylocation();
             }catch (Exception e){
                 Toast.makeText(getContext(), " exception"+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
-            sharedPreferences = getActivity().getApplicationContext().getSharedPreferences(filename, getActivity().getApplicationContext().MODE_PRIVATE);
-            if(sharedPreferences.contains(Uniquecode) && sharedPreferences.contains(reguserbus)) {
-                reference = FirebaseDatabase.getInstance().getReference()
-                        .child("bus")
-                        .child(sharedPreferences.getString(Uniquecode, "")).child(sharedPreferences.getString(reguserbus, ""));
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()){
-                            try{
-                                for(DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                                    latitude = (int) Float.parseFloat(dataSnapshot.child("latitude").getValue().toString());
-                                    longitude = (int) Float.parseFloat(dataSnapshot.child("longitude").getValue().toString());
-                                    Toast.makeText(getContext(), latitude+"  "+longitude, Toast.LENGTH_SHORT).show();
-                                    mymarker.setPosition(new LatLng(latitude, longitude));
-                                }
-
-
-                            }catch (Exception e){
-                                Toast.makeText(getContext(), " exception 2"+e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-            }
-
-
 
         }
     }
 
+    private void getmylocation() {
+
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Task<Location> task = client.getLastLocation();
+
+        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+
+               curlat=location.getLatitude();
+                curlong=location.getLongitude();
+                LatLng sydney1 = new LatLng(location.getLatitude(),location.getLongitude() );
+                //mymarker.setPosition(sydney1);
+                MarkerOptions mk = new MarkerOptions()
+                        .position(sydney1)
+                        .title("you are here")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                googleMap1.addMarker(mk);
+                //googleMap.setMinZoomPreference(50);
+                googleMap1.getUiSettings().setZoomControlsEnabled(true);
+                googleMap1.getUiSettings().setAllGesturesEnabled(true);
+                googleMap1.moveCamera(CameraUpdateFactory.newLatLng(sydney1));
+
+            }
+        });
+
+    }
+
     private void readChanges() {
         sharedPreferences = getActivity().getApplicationContext().getSharedPreferences(filename, getActivity().getApplicationContext().MODE_PRIVATE);
-        if(sharedPreferences.contains(Uniquecode) && sharedPreferences.contains(reguserbus)) {
+        if (sharedPreferences.contains(Uniquecode) && sharedPreferences.contains(reguserbus)) {
             reference = FirebaseDatabase.getInstance().getReference()
                     .child("bus")
                     .child(sharedPreferences.getString(Uniquecode, "")).child(sharedPreferences.getString(reguserbus, ""));
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists()){
-                        try{
-                    for(DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                        latitude = Integer.parseInt(dataSnapshot.child("latitude").getValue().toString());
-                        longitude = Integer.parseInt(dataSnapshot.child("longitude").getValue().toString());
-                        Toast.makeText(getContext(), latitude+"  "+longitude, Toast.LENGTH_SHORT).show();
-                        mymarker.setPosition(new LatLng(latitude, longitude));
-                    }
+                    if (dataSnapshot.exists()) {
+                        try {
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                latitude = Double.parseDouble(dataSnapshot.child("lat").getValue().toString());
+                                longitude = Double.parseDouble(dataSnapshot.child("lng").getValue().toString());
+                               // Toast.makeText(getContext(), latitude + "  " + longitude, Toast.LENGTH_SHORT).show();
+                                float result[]=new float[10];
+                                Location.distanceBetween(latitude,longitude,curlat,curlong,result);
+                                //Toast.makeText(getContext(),String.valueOf(result[0]/1000)+"Kms",Toast.LENGTH_LONG).show();
+                                dist.setText(String.valueOf(result[0]/1000)+"Kms");
+                                mymarker.setPosition(new LatLng(latitude, longitude));
+                            }
 
 
-                    }catch (Exception e){
-                            Toast.makeText(getContext(), " exception 1"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Toast.makeText(getContext(), " exception 1" + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -163,7 +215,6 @@ private final int MIN_DISTANCE=1;
         }
 
     }
-
     private void getLocationUpdate() {
         if(manager!=null) {
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED

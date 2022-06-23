@@ -33,7 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Admin_Bus_Registration extends Fragment {
 
     TextInputLayout name,to,from,mob,details,busno,codeno;
-    TextInputLayout drivername,to_city,from_city,mob_no,bus_no;
+    TextInputLayout drivername,to_city,from_city,mob_no,bus_no,via,pass;
     String unicodeno;
     Button button;
     SharedPreferences sharedPreferences;
@@ -54,10 +54,12 @@ public Admin_Bus_Registration(){
         drivername=viewarg.findViewById(R.id.drivername);
         to_city=viewarg.findViewById(R.id.to_city);
         from_city=viewarg.findViewById(R.id.from_city);
+        via=viewarg.findViewById(R.id.via_city);
         mob_no=viewarg.findViewById(R.id.mob_no);
         bus_no=viewarg.findViewById(R.id.bus_no);
         codeno=viewarg.findViewById(R.id.regcodeNo);
         button=viewarg.findViewById(R.id.Bus_data_Btn);
+        pass=viewarg.findViewById(R.id.password);
         sharedPreferences=getActivity().getApplicationContext().getSharedPreferences(adminfilename, getActivity().getApplicationContext().MODE_PRIVATE);
         if(sharedPreferences.contains(adminUniquecode)){
 
@@ -76,23 +78,35 @@ public Admin_Bus_Registration(){
     }
     private void insertDriverData(){
         String name=drivername.getEditText().getText().toString();
+        String password=pass.getEditText().getText().toString();
         String mob=mob_no.getEditText().getText().toString();
         String busno=bus_no.getEditText().getText().toString();
         String from=from_city.getEditText().getText().toString();
         String to=to_city.getEditText().getText().toString();
+        String via_add=via.getEditText().getText().toString();
         String unco=codeno.getEditText().getText().toString();
         String id=driverDbRef.push().getKey();
-
-        BusSchema drivers=new BusSchema(name,mob,busno,from,to,unicodeno);
-        driverDbRef.child("bus").child(unicodeno).child(busno).setValue(drivers).addOnCompleteListener(new OnCompleteListener<Void>() {
+Driverschema dsch=new Driverschema(name,password,mob);
+        driverDbRef.child("driver").push().setValue(dsch).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Data inserted successfully", Toast.LENGTH_SHORT).show();
+                    BusSchema drivers=new BusSchema(name,mob,busno,from,to,via_add,unicodeno);
+                    driverDbRef.child("bus").child(unicodeno).child(busno).setValue(drivers).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()) {
+                                Toast.makeText(getActivity().getApplicationContext(), "Data inserted successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+
                 }
             }
         });
 
-    }
+
+          }
 
 }

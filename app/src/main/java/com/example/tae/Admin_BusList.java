@@ -2,6 +2,7 @@ package com.example.tae;
 
 import static com.example.tae.Admin_LoginPage.adminUniquecode;
 import static com.example.tae.Admin_LoginPage.adminfilename;
+import static com.example.tae.Admin_LoginPage.adminreguserbus;
 import static com.example.tae.User_Login_Page.Uniquecode;
 import static com.example.tae.User_Login_Page.filename;
 
@@ -18,16 +19,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class Admin_BusList extends Fragment {
 
     private RecyclerView recyclerView;
+
+    Button buslogout, settime, busnumupd;
+    TextInputLayout regbus;
     personAdapter adapter; // Create Object of the Adapter class
     DatabaseReference mbase; // Create object of the
     SharedPreferences sharedPreferences;
@@ -70,6 +80,44 @@ public class Admin_BusList extends Fragment {
         adapter = new personAdapter(options,itemClickListener);
         // Connecting Adapter class with the Recycler view*/
         recyclerView.setAdapter(adapter);
+
+        regbus = view.findViewById(R.id.reguserbus);
+        busnumupd = view.findViewById(R.id.busupdatebutton);
+        sharedPreferences = getActivity().getApplicationContext().getSharedPreferences(adminfilename, getActivity().getApplicationContext().MODE_PRIVATE);
+        regbus.getEditText().setText(sharedPreferences.getString(adminreguserbus, ""));
+        busnumupd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("bus").child(sharedPreferences.getString(adminUniquecode, ""));
+                String businfouser = regbus.getEditText().getText().toString();
+                Query checkbus = reference.orderByChild("busno").equalTo(businfouser);
+                checkbus.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(adminreguserbus, businfouser);
+                            editor.commit();
+                            Toast.makeText(getContext(), "bus number updated", Toast.LENGTH_SHORT).show();
+                            regbus.setError(null);
+                            regbus.setErrorEnabled(false);
+                        } else {
+                            regbus.setError("Bus number is invalid");
+                            regbus.requestFocus();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+            }
+        });
+
+
         return view;
     }
 
@@ -78,6 +126,8 @@ public class Admin_BusList extends Fragment {
     public void onStart() {
         super.onStart();
         adapter.startListening();
+        regbus.setError(null);
+        regbus.setErrorEnabled(false);
     }
 
     // Function to tell the app to stop getting

@@ -39,6 +39,7 @@ class personAdapter extends FirebaseRecyclerAdapter<
         holder.mobile.setText(model.getMobile());
         holder.from.setText(model.getFrom());
         holder.to.setText(model.getTo());
+        holder.via.setText(model.getVia());
     }
     // Function to tell the class about the Card view (here
     // "person.xml")in
@@ -56,7 +57,7 @@ class personAdapter extends FirebaseRecyclerAdapter<
     // Sub Class to create references of the views in Crad
     // view (here "person.xml")
     class personsViewholder extends RecyclerView.ViewHolder {
-        TextView drivername, busno, mobile,from,to;
+        TextView drivername, busno, mobile,from,to,via;
         public personsViewholder(@NonNull View itemView)
         {
             super(itemView);
@@ -65,6 +66,7 @@ class personAdapter extends FirebaseRecyclerAdapter<
             mobile = itemView.findViewById(R.id.textmob);
             from=itemView.findViewById(R.id.textfrom);
             to=itemView.findViewById(R.id.textto);
+            via=itemView.findViewById(R.id.via_city);
         }
     }
 }           

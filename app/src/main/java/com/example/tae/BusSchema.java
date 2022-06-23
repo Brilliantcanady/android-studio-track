@@ -6,34 +6,45 @@ public class BusSchema {
     String busno;
     String from;
     String to;
+    String via;
     String adminuniquecode;
-    String latitude, longitude;
+    String lat, lng;
 
-    public BusSchema(String drivername, String mobile, String busno, String from, String to,String uniquecodeno) {
+    public BusSchema(String drivername, String mobile, String busno, String from, String to, String via, String uniquecodeno) {
         this.drivername = drivername;
         this.mobile = mobile;
         this.busno = busno;
         this.from = from;
         this.to = to;
+        this.via=via;
         this.adminuniquecode=uniquecodeno;
-        this.latitude ="";
-        this.longitude ="";
+        this.lat ="";
+        this.lng ="";
     }
 
-    public String getLatitude() {
-        return latitude;
+
+    public String getVia() {
+        return via;
     }
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
+    public void setVia(String via) {
+        this.via = via;
     }
 
-    public String getLongitude() {
-        return longitude;
+    public String getLat() {
+        return lat;
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
     }
 
     public String getUniquecode() {

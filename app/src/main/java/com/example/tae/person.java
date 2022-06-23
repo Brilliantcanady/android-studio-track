@@ -2,10 +2,10 @@ package com.example.tae;
 public class person
 {
 
-    private String firstname;
     private String drivername;
     private String mobile;
     private String busno;
+    private String via;
     private String from;
     private String to;
     private String uniquecode;
@@ -13,6 +13,15 @@ public class person
 
     public person(){
     }
+
+    public String getVia() {
+        return via;
+    }
+
+    public void setVia(String via) {
+        this.via = via;
+    }
+
     public String getUniquecode() {
         return uniquecode;
     }
